@@ -1,0 +1,46 @@
+<html>
+<head>
+<title>404</title>
+<meta http-equiv=Content-Type content="text/html; charset=utf8">
+</head>
+<script>
+function getExplorerInfo() {
+ var explorer = window.navigator.userAgent.toLowerCase() ;
+ console.log(explorer);
+ //ie10ртоб
+ if (explorer.indexOf("msie") >= 0 ) {
+    var ver=explorer.match(/msie ([\d.]+)/)[1];	
+    return {type:"IE",version:ver};
+ }
+ //ie11
+ else if(explorer.indexOf("trident") >= 0){
+	var ver = explorer.match(/rv\:([\d.]+)/)[1];
+	return {type:"IE",version:ver};
+ }
+ //firefox 
+ else if (explorer.indexOf("firefox") >= 0) {
+    var ver=explorer.match(/firefox\/([\d.]+)/)[1];
+    return {type:"Firefox",version:ver};
+ }
+ //Chrome
+ else if(explorer.indexOf("chrome") >= 0){
+    var ver=explorer.match(/chrome\/([\d.]+)/)[1];
+     return {type:"Chrome",version:ver};
+ }
+ //Opera
+ else if(explorer.indexOf("opera") >= 0){
+ var ver=explorer.match(/opera.([\d.]+)/)[1];
+ return {type:"Opera",version:ver};
+ }
+ //Safari
+ else if(explorer.indexOf("Safari") >= 0){
+ var ver=explorer.match(/version\/([\d.]+)/)[1];
+ return {type:"Safari",version:ver};
+ }
+</script>
+<body>
+	<div id="four-div" >
+		<button type="button" onClick="getExplorerInfo();" >click</button>
+	</div>
+</body>
+</html>
