@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf8" />
+		<title>test7:进度条</title>
+		<style type="text/css">
+		*{margin: 0;padding: 0;}
+		#oppo{
+			width: 100%;
+			height: 630px;
+			background: #ddd;
+			overflow:hidden;/*超出部分隐藏*/
+		}
+		#oppo ul li{
+			width:100%;
+			height: 630px;
+			/* border: 1px solid red; */
+			position: relative;
+		} 
+		#oppo ul li img{
+			position: absolute;
+			left: -1170px;
+			top: 0;
+		}
+		#oppo ul li .nav{
+			width: 100%;
+			height: 70px;
+			background: white;
+			position:absolute;
+			bottom: 0;
+			opacity: 0.75;
+		}
+		#oppo ul li .bar{
+			width: 100%;
+			height: 3px;
+			position: absolute;
+			bottom: 0;
+			background:url(images/bar.png);
+		}
+		#oppo ul li .bar p{
+			width: 0px;
+			height: 3px;
+			background: #00ff00;
+		}
+		</style>
+	</head>
+	<body>
+		<div id="oppo">
+			<ul>
+				<li style="background:url(images/bg1.jpg) center">
+					<img src="images/con1.png" />
+					<div class="nav"></div>
+					<div class="bar"><p></p></div>
+				</li>
+				<li style="background:url(images/bg2.jpg) center">
+					<img src="images/con1.png" />
+					<div class="nav"></div>
+					<div class="bar"><p></p></div>
+				</li>
+				<li style="background:url(images/bg3.jpg) center">
+					<img src="images/con1.png" />
+					<div class="nav"></div>
+					<div class="bar"><p></p></div>
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script type="text/javascript">
+			var i=0;
+			$("#oppo ul li").eq(i).find("img").animate({left:"50px"}, 500, function(){
+				$("#oppo ul li").eq(i).find("p").animate({width:"1900px"}, 8000, function(){
+					$("#oppo ul li").eq(i).find("img").animate({left:"2000px"},500,function(){
+						i++;
+						if(i>2){
+							i=0;
+						}
+						$("#oppo ul li").eq(i).fadeIn(100).siblings().fadeOut(100, function(){
+							$("img")[i-1].style.left="-1180px";
+							$("p")[i-1].style.width="0px";
+						});
+					});
+				});
+			});
+			setInterval("junmper()",9200);
+			function junmper(){
+				$("#oppo ul li").eq(i).find("img").animate({left:"50px"}, 500, function(){
+					$("#oppo ul li").eq(i).find("p").animate({width:"1900px"}, 8000, function(){
+						$("#oppo ul li").eq(i).find("img").animate({left:"2000px"},500,function(){
+							i++;
+							if(i>2){
+								i=0;
+							}
+							$("#oppo ul li").eq(i).fadeIn(100).siblings().fadeOut(100, function(){
+								if(i!=0){
+									$("img")[i-1].style.left="-1180px";
+									$("p")[i-1].style.width="0px";
+								}else{
+									$("img")[i+2].style.left="-1180px";
+									$("p")[i+2].style.width="0px";
+								}								
+							});
+						});
+					});
+				});
+			}
+			
+		</script>
+	</body>
+</html>
