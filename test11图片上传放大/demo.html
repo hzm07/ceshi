@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>test11</title>
+		<style type="text/css">
+		*{margin: 0;padding: 0;}
+		body{
+			background: #3c8fc1;
+		}
+		#photo{
+			width: 900px;
+			height: 350px;
+			margin: 100px auto;
+			background: url("images/bg.jpg");
+			background-position: center;
+			position: relative;
+		}
+		#photo .big{
+			width: 285px;
+			height: 282px;
+			border: 1px solid red;
+			position: absolute;
+			top: 32px;
+			right: 57px;
+			border-radius: 10px;
+			overflow: hidden;
+		}
+		#photo .small{
+			width: 450px;
+			height: 100px;
+			background: #ddd;
+			position: absolute;
+			bottom: 35px;
+			left: 40px;
+			padding: 10px;
+			border-radius: 5px;
+		}
+		#photo .small a{
+			display: block;
+			width: 100px;
+			height: 100px;
+			border:1px solid #aaa;
+			border-radius: 5px 0 0 5px;
+			/*background-color: #fff;*/
+			background: url("images/img.png") #fff no-repeat center center;
+			float: left;
+		}
+		#photo .small a input{
+			width: 100px;
+			height: 100px;
+			opacity: 0;
+		}
+		#photo .small input#fileName{
+			width: 300px;
+			height: 100px;
+			border:1px solid #aaa;
+			border-radius: 0 5px 5px 0;
+			border-left: 0px;
+
+		}
+		</style>
+	</head>
+	<body>
+	<div></div>
+		<div id="photo">
+			<div class="big">
+				<img src="" id="showImage" width="285px" height="282px">
+			</div>
+			<div class="small">
+				<a href="#">
+					<input type="file" onchange="upload(this)" />
+				</a>
+				<input type="text" id="fileName"/>
+			</div>
+		</div>
+		<script type="text/javascript" src="js/magnifier.js"></script>
+		<script type="text/javascript">
+			function upload(obj){
+				var fileName = document.getElementById("fileName");
+				var showImage = document.getElementById("showImage");
+				fileName.value = obj.files[0].name;
+				showImage.src = window.URL.createObjectURL(obj.files[0]);  //创建文件的绝对地址
+				//用放大镜插件实现放大效果
+				showImage.setAttribute('bigSrc',showImage.src);
+			}
+		</script>
+	</body>
+</html>
